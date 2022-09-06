@@ -1,41 +1,58 @@
-//código carros
-//carro 1
-let xCarro = 600;
-let yCarro = 40;
-let velocidadeCarro1 = 2;
 
-//carro 2
-let xCarro2 = 600;
-let yCarro2 = 96;
-let velocidadeCarro2 = 2.5;
+let xCarros = [600, 600, 600];
+let xCarrosContrario = [0, 0, 0];
+let yCarros = [40, 96,150];
+let yCarrosContrario =[210, 270, 318];
+let velocidadeCarros = [2, 3.2, 2.5];
+let velocidadeCarrosContrario = [5, 2.3, 3.2]
+let comprimentoCarro = 50;
+let alturaCarro = 40;
 
-//carro 3
-let xCarro3 = 600;
-let yCarro3 = 150;
-let velocidadeCarro3 = 3.2;
 
 function mostraCarro(){
-    image(imagemCarro, xCarro, yCarro, 50, 40);
-    image(imagemCarro2, xCarro2, yCarro2, 50, 40);
-    image(imagemCarro3, xCarro3, yCarro3, 50, 40);
+  for(let i = 0; i < imagemCarros.length;i++){
+    image(imagemCarros[i], xCarros[i], yCarros[i], comprimentoCarro, alturaCarro);
   }
-  
-  function movimentaCarro(){
-    xCarro -= velocidadeCarro1;
-    xCarro2 -= velocidadeCarro2;
-    xCarro3 -= velocidadeCarro3;
-  }
-  
-function voltaPosicaoInicialDoCarro() {
-    if  (xCarro <-50) {
-        xCarro = 600
-    }
-    
-    if  (xCarro2 <-50) {
-        xCarro2 = 600
-    }
+}
 
-    if  (xCarro3 <-50) {
-        xCarro3 = 600
+function movimentaCarro(){
+  for(let i=0; i < imagemCarros.length; i++){
+    xCarros[i] -= velocidadeCarros[i];
+  }
+}
+
+function voltaPosicaoInicialCarro(){
+  for(let i=0; i < imagemCarros.length; i++){
+    if(passouTodaTela(xCarros[i])){
+      xCarros[i] = 600;
     }
+  }
+}
+
+function passouTodaTela(xCarros){
+  return xCarros < -50;
+}
+
+function mostraCarroContrario(){
+  for(let i = 0; i < imagemCarrosContrario.length;i++){
+    image(imagemCarrosContrario[i], xCarrosContrario[i], yCarrosContrario[i], comprimentoCarro, alturaCarro);
+  }
+}
+
+function movimentaCarroContrario(){
+  for(let i=0; i < imagemCarrosContrario.length; i++){
+    xCarrosContrario[i] += velocidadeCarrosContrario[i];
+  }
+}
+
+function voltaPosicaoInicialCarroContrario(){
+  for(let i=0; i < imagemCarrosContrario.length; i++){
+    if(passouTodaTelaContrario(xCarrosContrario[i])){
+      xCarrosContrario[i] = 0;
+    }
+  }
+}
+
+function passouTodaTelaContrario(xCarrosContrario){
+  return xCarrosContrario > 650;
 }
